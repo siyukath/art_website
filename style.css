@@ -1,0 +1,435 @@
+:root {
+    --bg-color: #FAFAFA;
+    --text-dark: #1A1A1A;
+    --text-muted: #888888;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { background-color: var(--bg-color); color: var(--text-dark); font-family: var(--font-sans); overflow-x: hidden; }
+
+/* 导航栏 */
+.top-nav { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 30px 5vw; z-index: 100; mix-blend-mode: difference; color: white; }
+.logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 4px; font-weight: 300;}
+.nav-links a { 
+    font-family: var(--font-serif); /* Changed to your elegant Serif font */
+    font-size: 0.9rem; /* Slightly larger for readability */
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    color: white; 
+    text-decoration: none; 
+    margin-left: 40px; 
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.6; /* Adds a subtle fade when hovered */
+}
+/* =========================================
+   首页 Hero 
+   ========================================= */
+.hero { position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; background: #fff;}
+#inkCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+.hero-content { 
+    position: relative; 
+    z-index: 2; 
+    text-align: center; 
+    pointer-events: none; 
+    /* 平滑过渡消失/出现 */
+    transition: opacity 0.8s ease, transform 0.8s ease; 
+}
+
+/* 当用户往下滚动时触发此类名 */
+.hero-content.scrolled-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.artist-name { 
+    font-family: var(--font-serif); 
+    font-size: 2.2rem; /* 变小 */
+    font-weight: 300; 
+    letter-spacing: 8px; /* 增加字间距，显得更精致 */
+    text-transform: uppercase;
+    margin-bottom: 1.5rem; 
+    color: #222;
+}
+
+.hero-quote { 
+    font-family: var(--font-serif); 
+    font-size: 1.1rem; /* 变小 */
+    font-style: italic;
+    font-weight: 300;
+    line-height: 2; 
+    letter-spacing: 2px;
+    color: #777; /* 颜色变淡，更有呼吸感 */
+}
+
+/* 优雅的向下滚动细线动画 */
+.scroll-indicator {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* 控制线条总高度 */
+}
+
+.scroll-line {
+    width: 1px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* 浅色轨道 */
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(75, 75, 75, 0.6); /* 深色流动线段 */
+    /* 循环动画 */
+    animation: scrollLineLoop 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes scrollLineLoop {
+    0% { top: -50%; }
+    100% { top: 100%; }
+}
+
+/* =========================================
+   空间画廊 (保持不变)
+   ========================================= */
+.spatial-gallery-section { 
+    position: relative; 
+    width: 100vw; 
+    height: 100vh; 
+    background: #f5f3ef; /* Lighter, warm color, almost white */
+    overflow: hidden; 
+    cursor: grab; 
+}
+.spatial-gallery-section:active { cursor: grabbing; }
+.gallery-instructions { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); z-index: 10; font-size: 0.75rem; letter-spacing: 2px; color: #777; pointer-events: none; text-transform: uppercase;}
+.viewport { width: 100%; height: 100%; perspective: 1000px; }
+.world { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transform-origin: center center; transition: transform 0.1s ease-out; }
+
+.artwork { position: absolute; top: 50%; left: 50%; display: flex; flex-direction: column; align-items: center; cursor: pointer; will-change: transform; }
+.artwork img { max-height: 50vh; max-width: 40vw; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.1); transition: transform 0.4s ease, box-shadow 0.4s ease; pointer-events: none; }
+.artwork:hover img { transform: translateY(-10px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+.artwork .caption { font-family: var(--font-serif); margin-top: 15px; font-size: 1.1rem; font-style: italic; opacity: 0; transition: opacity 0.4s ease; color: #444;}
+.artwork:hover .caption { opacity: 1; }
+
+/* =========================================
+   About 区域 (保持不变)
+   ========================================= */
+.about-section { padding: 150px 10vw 120px 10vw; background-color: var(--bg-color); display: flex; justify-content: center; }
+.about-container { max-width: 760px; text-align: center; }
+.section-title { font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 3rem; font-style: italic; font-weight: 300;}
+.about-container p { font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 2rem; text-align: justify; font-weight: 300;}
+.contact-info { margin-top: 100px; padding-top: 60px; border-top: 1px solid rgba(0, 0, 0, 0.05); }
+.email-link { display: block; font-family: var(--font-serif); font-size: 2rem; font-style: italic; color: var(--text-dark); text-decoration: none; margin-bottom: 40px; transition: opacity 0.3s ease; }
+.email-link:hover { opacity: 0.5; }
+.social-links { display: flex; justify-content: center; gap: 40px; }
+.social-links a { font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 2px; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.3s ease; }
+.social-links a:hover { color: var(--text-dark); }
+.reveal-text { opacity: 0; transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
+.reveal-text.active { opacity: 1; transform: translateY(0); }
+
+/* =========================================
+   画作详情弹窗 (保持不变)
+   ========================================= */
+.artwork-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #FFFFFF; z-index: 1000; display: flex; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+.artwork-modal.active { opacity: 1; pointer-events: auto; }
+.close-modal-btn { position: absolute; top: 40px; right: 5vw; background: none; border: none; font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dark); cursor: pointer; z-index: 1001; transition: opacity 0.3s ease; text-transform: uppercase;}
+.close-modal-btn:hover { opacity: 0.5; }
+.modal-split-container { display: flex; width: 100%; height: 100%; }
+.modal-left { flex: 1.2; height: 100%; display: flex; justify-content: center; align-items: center; padding: 60px; background-color: #FAFAFA; }
+.modal-left img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+.modal-right { flex: 0.8; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 60px 8vw 60px 4vw; }
+.modal-title { font-family: var(--font-serif); font-size: 2.2rem; font-style: italic; font-weight: 300; margin-bottom: 60px; color: var(--text-dark); }
+.info-table { width: 100%; border-top: 1px solid rgba(0,0,0,0.05); }
+.info-row { display: flex; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 1px;}
+.info-label { flex: 1; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem;}
+.info-value { flex: 2; color: var(--text-dark); }
+
+@media (max-width: 900px) {
+    .modal-split-container { flex-direction: column; overflow-y: auto; }
+    .modal-left { padding: 80px 20px 40px 20px; flex: none; height: auto; }
+    .modal-right { padding: 40px 20px 80px 20px; flex: none; }
+    .close-modal-btn { background: rgba(255,255,255,0.9); padding: 10px 15px; border-radius: 50px; }
+}
+
+/* =========================================
+   Fluid Cursor Overlay
+   ========================================= */
+#fluidCursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Let clicks pass through to the website */
+    z-index: 9999; /* Keep it above everything but the modal */
+    mix-blend-mode: multiply; /* Gives it an inky, watercolor blend */
+}
+/* =========================================
+   Structured Gallery Page Layout (Hybrid Layout)
+   ========================================= */
+body.gallery-page {
+    display: block; /* Switched to block so sections stack vertically */
+    background-color: #FFFFFF; 
+    overflow-x: hidden;
+}
+
+/* 1. Top Section Wrapper */
+.archive-top-section {
+    display: flex;
+    width: 100vw;
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Divider before the grid starts */
+}
+
+/* 2. Sticky Sidebar */
+.archive-sidebar {
+    width: 30vw;
+    height: 100vh;
+    position: sticky; /* Keeps it on screen while the right side scrolls */
+    top: 0;
+    padding: 120px 4vw 60px 4vw; /* 120px top padding ensures it sits below the top nav */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    background-color: #FFFFFF;
+}
+
+/* Updated Typography to match 'About' section in index.html */
+.artist-bio-short {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.sidebar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar-links a {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sidebar-links a:hover {
+    color: var(--text-dark);
+}
+
+/* 3. Featured Scrollable Column (First 3 Artworks) */
+.archive-featured {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-item {
+    width: 100%;
+    min-height: 100vh; /* Ensures each artwork gets full screen focus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 5vw;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.featured-item:last-child {
+    border-bottom: none; /* Prevents double borders where the grid starts */
+}
+
+/* 4. The 2-Column Grid (Remaining Artworks) */
+.gallery-grid-container {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-item {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0,0,0,0.05);
+    padding: 100px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1; 
+}
+
+.grid-item:nth-child(2n) {
+    border-right: none;
+}
+
+/* 5. Shared Image Styling */
+.image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper img {
+    max-width: 70%;
+    max-height: 60vh; /* Prevents extremely tall paintings from overflowing */
+    object-fit: contain;
+    /* box-shadow: 0 15px 40px rgba(0,0,0,0.06); */
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.05); 
+}
+
+/* 6. Responsive Adjustments for Mobile */
+@media (max-width: 900px) {
+    .archive-top-section { flex-direction: column; }
+    .archive-sidebar { 
+        width: 100%; 
+        height: auto; 
+        position: relative; /* Turns off sticky on mobile */
+        padding: 120px 5vw 60px 5vw; 
+        border-right: none; 
+        border-bottom: 1px solid rgba(0,0,0,0.05); 
+    }
+    .archive-featured { width: 100%; }
+    .gallery-grid-container { grid-template-columns: 1fr; }
+    .grid-item { 
+        border-right: none; 
+        aspect-ratio: auto; 
+        min-height: 80vh; 
+        padding: 60px 5vw; 
+    }
+}
+/* =========================================
+   Artwork Hover Captions
+   ========================================= */
+.featured-item, .grid-item {
+    position: relative; /* This anchors the caption to the bottom-left of the cell */
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateX(-15px); /* Starts slightly to the left */
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    pointer-events: none; /* Prevents the text from interfering with the mouse hover */
+    z-index: 10;
+}
+
+/* Trigger the caption to appear when hovering over the cell */
+.featured-item:hover .gallery-caption,
+.grid-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateX(0); /* Slides into place smoothly */
+}
+
+/* =========================================
+   Rippling Interactive Cursor (Multi-Layer)
+   ========================================= */
+a:hover, .featured-item:hover, .grid-item:hover {
+    cursor: none;
+}
+
+.ripple-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px; /* Much smaller initial dot */
+    height: 8px;
+    background-color: #95d35f; /* Matches the dark ink */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+    transition: opacity 0.5s ease;
+}
+
+/* The invisible rings inside the cursor waiting to ripple */
+.ripple-cursor span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 0.6px solid #d35656; /* Matches the ink color */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+/* When hovering over an artwork/link, animate the rings with staggered delays */
+.ripple-cursor.active span:nth-child(1) {
+    animation: multiRipple 3s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-delay: 0s;
+}
+
+.ripple-cursor.active span:nth-child(2) {
+    animation: multiRipple 3s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-delay: 0.8s; /* Second ripple starts slightly later */
+}
+
+.ripple-cursor.active span:nth-child(3) {
+    animation: multiRipple 3s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-delay: 1.3s; /* Third ripple starts last */
+}
+
+/* The expansion and fade effect */
+@keyframes multiRipple {
+    0% { 
+        width: 8px; 
+        height: 8px; 
+        opacity: 0.6; 
+    }
+    100% { 
+        width: 60px; /* How large the ripple gets */
+        height: 60px; 
+        opacity: 0; 
+    }
+}
+
+/* =========================================
+   Page Transition Overlay
+   ========================================= */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAFAFA; /* Matches your pure/warm white */
+    z-index: 999999; /* Above absolutely everything */
+    pointer-events: none; /* Allows clicking through when invisible */
+    opacity: 1; /* Starts opaque on load */
+    transition: opacity 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.page-transition-overlay.hidden {
+    opacity: 0;
+}
+

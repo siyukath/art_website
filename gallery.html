@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siyu Zhong | Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="gallery-page">
+
+    <nav class="top-nav">
+        <div class="logo">SIYU ZHONG</div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="gallery.html" class="transition-link">ARCHIVE</a>
+            <a href="index.html#about">ABOUT</a>
+        </div>
+    </nav>
+
+    <div class="archive-top-section">
+        
+        <aside class="archive-sidebar">
+            <div class="signature-mark">
+                <img src="signature.png" alt="Siyu Signature" style="max-width: 100px;">
+            </div>
+      
+            <div class="sidebar-bottom">
+                <p class="artist-bio-short">
+                    Oil painter whose work bridges reality and imagination.
+                    <br><br>
+                    Through reimagining natural forms in ethereal ways, I create dreamlike scenes that challenge conventional notions of space and time.
+                </p>
+                <div class="sidebar-links">
+                    <a href="index.html#about">Bio</a>
+                    <a href="mailto:hello@siyuzhong.com">Email</a>
+                    <a href="#">IG</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="archive-featured">
+            <div class="featured-item">
+                <div class="image-wrapper"><img src="Bone and Iris.JPG" alt="Bone and Iris"></div>
+                <span class="gallery-caption">Bone and Iris</span>
+            </div>
+            <div class="featured-item">
+                <div class="image-wrapper"><img src="In Rememberance of the Family.jpg" alt="In Remembrance"></div>
+                <span class="gallery-caption">In Rememberance of the Family</span>
+            </div>
+            <div class="featured-item">
+                <div class="image-wrapper"><img src="Mud Ice.JPG" alt="Mud Ice"></div>
+                <span class="gallery-caption">Mud Ice</span>
+            </div>
+        </main>
+
+    </div>
+
+    <section class="gallery-grid-container">
+        
+        <div class="grid-item">
+            <div class="image-wrapper"><img src="new death.jpg" alt="New Death"></div>
+            <span class="gallery-caption">New Death</span>
+        </div>
+        <div class="grid-item">
+            <div class="image-wrapper"><img src="Pale star 1.JPG" alt="Pale star 1"></div>
+            <span class="gallery-caption">Pale star 1</span>
+        </div>
+        <div class="grid-item">
+            <div class="image-wrapper"><img src="texture.jpg" alt="Texture"></div>
+            <span class="gallery-caption">texture</span>
+            
+        </div>
+        <div class="grid-item">
+            <div class="image-wrapper"><img src="Arches.jpg" alt="Arches"></div>
+            <span class="gallery-caption">Arches</span>
+        </div>
+        <div class="grid-item">
+            <div class="image-wrapper"><img src="Dignity in Defeats.jpg" alt="Dignity in Defeats"></div>
+            <span class="gallery-caption">Dignity in Defeats</span>
+        </div>
+
+    </section>
+
+    <script src="fluid-cursor.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create the cursor and its 3 ripple layers
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple-cursor');
+        // Add 3 spans inside to act as the multi-layer ripples
+        ripple.innerHTML = '<span></span><span></span><span></span>';
+        document.body.appendChild(ripple);
+
+        // Make the ripple element follow the mouse perfectly centered
+        document.addEventListener('mousemove', (e) => {
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+        });
+
+        // Find all clickable things (links and artwork cells)
+        const interactables = document.querySelectorAll('a, .grid-item, .featured-item');
+        
+        // Turn the multi-ripple on when entering, off when leaving
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ripple.classList.add('active');
+            });
+            el.addEventListener('mouseleave', () => {
+                ripple.classList.remove('active');
+            });
+        });
+    });
+</script>
+</body>
+</html>
