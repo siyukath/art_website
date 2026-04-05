@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siyu Zhong | Spatial Portfolio</title>
+    <title>Siyu Zhong</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -45,13 +45,13 @@
             <div class="world" id="world">
                 <div class="artwork" style="transform: translate(-40vw, -10vh) scale(1.2);" 
                      data-title="Bone & Structure" data-medium="Oil on Canvas" data-size="40 in x 15 in" data-year="2024">
-                    <img src="IMG_5691.jpg" alt="Bone & Structure">
+                    <img src="Bone and Iris.JPG" alt="Bone & Structure">
                     <div class="caption">Bone & Structure</div>
                 </div>
                 
                 <div class="artwork" style="transform: translate(20vw, -25vh) scale(0.9);"
                      data-title="In Remembrance of the Family" data-medium="Oil Painting" data-size="60 in x 60 in" data-year="2025">
-                    <img src="Zhong_Siyu_In Rememberance of the Family.jpg" alt="In Rememberance">
+                    <img src="In Rememberance of the Family.jpg" alt="In Rememberance">
                     <div class="caption">In Remembrance of the Family</div>
                 </div>
 
@@ -69,8 +69,8 @@
 
                 <div class="artwork" style="transform: translate(-60vw, 20vh) scale(0.85);"
                      data-title="Classical Arches" data-medium="Oil Painting" data-size="60 in x 60 in" data-year="2025">
-                    <img src="99A6D2F3-1297-47C3-A0FA-092E9E9BACA7.jpg" alt="Arches">
-                    <div class="caption">Classical Arches</div>
+                    <img src="Arches.jpg" alt="Arches">
+                    <div class="caption">Arches</div>
                 </div>
             </div>
         </div>
@@ -87,17 +87,14 @@
                 Siyu, an artist and designer from Beijing, China, is currently studying dual degrees in Art & Design and UI/UX, with a minor in Business, at the University of Michigan.
             </p>
             <p class="reveal-text">
-                Her multidisciplinary practice spans oil painting, illustration, and AR/VR, reflecting her curiosity about the convergence of traditional and digital media. Inspired by themes of surrealism, magical realism, and Daoist philosophy, Siyu’s work explores liminal spaces and the tension between the real and the imagined. She constructs ethereal, dreamlike visuals that reimagine natural subjects in abstract forms, inviting audiences to question their perception of reality.
-            </p>
-            <p class="reveal-text">
                 Through her art, Siyu seeks to evoke a sense of "otherworldly beauty," offering viewers a transcendent experience that resonates with the unconscious mind. Her creative vision bridges the gap between familiar and fantastical, forging a deeper connection with audiences through immersive, thought-provoking worlds.
             </p>
 
             <div class="contact-info reveal-text">
-                <a href="mailto:hello@siyuzhong.com" class="email-link">hello@siyuzhong.com</a>
+                <a href="mailto:siyukath@gmail.com" class="email-link">siyukath@gmail.com</a>
                 <div class="social-links">
-                    <a href="#" target="_blank">Instagram</a>
-                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="https://www.instagram.com/siyukathart/" target="_blank">Instagram</a>
+                    <a href="https://www.linkedin.com/in/siyu-zhong/" target="_blank">LinkedIn</a>
                     <a href="#" target="_blank">Portfolio</a>
                 </div>
             </div>
@@ -106,6 +103,10 @@
 
     <div class="artwork-modal" id="artworkModal">
         <button class="close-modal-btn" id="closeModalBtn">CLOSE</button>
+        
+        <button class="carousel-nav prev-btn" id="prevBtn">&#8592;</button>
+        <button class="carousel-nav next-btn" id="nextBtn">&#8594;</button>
+
         <div class="modal-split-container">
             <div class="modal-left">
                 <img id="modalImg" src="" alt="Artwork Detail">
@@ -132,37 +133,11 @@
             </div>
         </div>
     </div>
+    
 
     <script src="script.js"></script>
     <script src="fluid-cursor.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Create the cursor and its 3 ripple layers
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple-cursor');
-        // Add 3 spans inside to act as the multi-layer ripples
-        ripple.innerHTML = '<span></span><span></span><span></span>';
-        document.body.appendChild(ripple);
-
-        // Make the ripple element follow the mouse perfectly centered
-        document.addEventListener('mousemove', (e) => {
-            ripple.style.left = e.clientX + 'px';
-            ripple.style.top = e.clientY + 'px';
-        });
-
-        // Find all clickable things (links and artwork cells)
-        const interactables = document.querySelectorAll('a, .grid-item, .featured-item');
-        
-        // Turn the multi-ripple on when entering, off when leaving
-        interactables.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                ripple.classList.add('active');
-            });
-            el.addEventListener('mouseleave', () => {
-                ripple.classList.remove('active');
-            });
-        });
-    });
+    
 </script>
 </body>
 </html>

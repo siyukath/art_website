@@ -31,24 +31,23 @@
                     <br><br>
                     Through reimagining natural forms in ethereal ways, I create dreamlike scenes that challenge conventional notions of space and time.
                 </p>
-                <div class="sidebar-links">
-                    <a href="index.html#about">Bio</a>
-                    <a href="mailto:hello@siyuzhong.com">Email</a>
-                    <a href="#">IG</a>
-                </div>
             </div>
         </aside>
 
         <main class="archive-featured">
-            <div class="featured-item">
+            <div class="featured-item artwork-trigger" 
+                data-title="Bone and Iris" 
+                data-medium="Oil on Canvas" 
+                data-size="40 in x 15 in" 
+                data-year="2024">
                 <div class="image-wrapper"><img src="Bone and Iris.JPG" alt="Bone and Iris"></div>
                 <span class="gallery-caption">Bone and Iris</span>
             </div>
-            <div class="featured-item">
+            <div class="featured-item artwork-trigger">
                 <div class="image-wrapper"><img src="In Rememberance of the Family.jpg" alt="In Remembrance"></div>
                 <span class="gallery-caption">In Rememberance of the Family</span>
             </div>
-            <div class="featured-item">
+            <div class="featured-item artwork-trigger">
                 <div class="image-wrapper"><img src="Mud Ice.JPG" alt="Mud Ice"></div>
                 <span class="gallery-caption">Mud Ice</span>
             </div>
@@ -58,59 +57,85 @@
 
     <section class="gallery-grid-container">
         
-        <div class="grid-item">
+        <div class="grid-item artwork-trigger"
+            data-title="New Death" 
+            data-medium="Oil on Canvas / Diptych" 
+            data-size="72 in x 48 in" 
+            data-year="2024">
             <div class="image-wrapper"><img src="new death.jpg" alt="New Death"></div>
             <span class="gallery-caption">New Death</span>
         </div>
-        <div class="grid-item">
+        
+        <div class="grid-item artwork-trigger"
+            data-title="Pale star" 
+            data-medium="Oil on Canvas / Diptych" 
+            data-size="72 in x 48 in" 
+            data-year="2024">
             <div class="image-wrapper"><img src="Pale star 1.JPG" alt="Pale star 1"></div>
             <span class="gallery-caption">Pale star 1</span>
         </div>
-        <div class="grid-item">
+        <div class="grid-item artwork-trigger"
+            data-title="Texture" 
+            data-medium="Oil on Canvas / Diptych" 
+            data-size="72 in x 48 in" 
+            data-year="2024">
             <div class="image-wrapper"><img src="texture.jpg" alt="Texture"></div>
             <span class="gallery-caption">texture</span>
             
         </div>
-        <div class="grid-item">
+        <div class="grid-item artwork-trigger"
+            data-title="Arches" 
+            data-medium="Oil on Canvas / Diptych" 
+            data-size="72 in x 48 in" 
+            data-year="2024">
             <div class="image-wrapper"><img src="Arches.jpg" alt="Arches"></div>
             <span class="gallery-caption">Arches</span>
         </div>
-        <div class="grid-item">
+        <div class="grid-item artwork-trigger"
+            data-title="Dignity in Defeats" 
+            data-medium="Oil on Canvas / Diptych" 
+            data-size="72 in x 48 in" 
+            data-year="2024">
             <div class="image-wrapper"><img src="Dignity in Defeats.jpg" alt="Dignity in Defeats"></div>
             <span class="gallery-caption">Dignity in Defeats</span>
         </div>
 
     </section>
 
+    <div class="artwork-modal" id="artworkModal">
+    <button class="close-modal-btn" id="closeModalBtn">CLOSE</button>
+    
+    <button class="carousel-nav prev-btn" id="prevBtn">&#8592;</button>
+    <button class="carousel-nav next-btn" id="nextBtn">&#8594;</button>
+
+    <div class="modal-split-container">
+        <div class="modal-left">
+            <img id="modalImg" src="" alt="Artwork Detail">
+        </div>
+        <div class="modal-right">
+            <div class="modal-info-content">
+                <h2 id="modalTitle" class="modal-title">Artwork Title</h2>
+                
+                <div class="info-table">
+                    <div class="info-row">
+                        <span class="info-label">Medium</span>
+                        <span class="info-value" id="modalMedium">Oil Painting</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Size</span>
+                        <span class="info-value" id="modalSize">60 in x 60 in</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Year</span>
+                        <span class="info-value" id="modalYear">2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="fluid-cursor.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Create the cursor and its 3 ripple layers
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple-cursor');
-        // Add 3 spans inside to act as the multi-layer ripples
-        ripple.innerHTML = '<span></span><span></span><span></span>';
-        document.body.appendChild(ripple);
-
-        // Make the ripple element follow the mouse perfectly centered
-        document.addEventListener('mousemove', (e) => {
-            ripple.style.left = e.clientX + 'px';
-            ripple.style.top = e.clientY + 'px';
-        });
-
-        // Find all clickable things (links and artwork cells)
-        const interactables = document.querySelectorAll('a, .grid-item, .featured-item');
-        
-        // Turn the multi-ripple on when entering, off when leaving
-        interactables.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                ripple.classList.add('active');
-            });
-            el.addEventListener('mouseleave', () => {
-                ripple.classList.remove('active');
-            });
-        });
-    });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
