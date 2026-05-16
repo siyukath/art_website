@@ -1,0 +1,484 @@
+/**
+ * ========================================
+ * MICRO-INTERACTIONS STYLES
+ * Artistic Premium Experience CSS
+ * ========================================
+ */
+
+/* ========================================
+   1. PALETTE LOADING ANIMATION
+   ======================================== */
+
+.palette-loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.palette-loading-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.palette-loader {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 40px;
+}
+
+/* 调色盘基础圆 */
+.palette-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(100, 80, 60, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: paletteCircleRotate 8s linear infinite;
+}
+
+@keyframes paletteCircleRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 油画颜料晕染 */
+.paint-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(25px);
+    opacity: 0.7;
+    animation: paintBlobFlow 3s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.blob-1 {
+    width: 45px;
+    height: 45px;
+    background: rgba(139, 115, 85, 0.8);
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 40px;
+    height: 40px;
+    background: rgba(212, 165, 116, 0.7);
+    bottom: -8px;
+    left: 20%;
+    animation-delay: 0.5s;
+}
+
+.blob-3 {
+    width: 35px;
+    height: 35px;
+    background: rgba(45, 62, 80, 0.75);
+    top: 25%;
+    right: -5px;
+    animation-delay: 1s;
+}
+
+.blob-4 {
+    width: 40px;
+    height: 40px;
+    background: rgba(232, 212, 196, 0.65);
+    bottom: 15%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+@keyframes paintBlobFlow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(var(--tx, 10px), var(--ty, -10px)) scale(0.95);
+        opacity: 0.5;
+    }
+}
+
+.blob-2 { --tx: -15px; --ty: 12px; }
+.blob-3 { --tx: 18px; --ty: -8px; }
+.blob-4 { --tx: -12px; --ty: 15px; }
+
+.loading-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: rgba(26, 26, 26, 0.6);
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   2. UNDERDRAWING SCROLL EFFECT
+   ======================================== */
+
+.artwork img {
+    --load-progress: 0;
+    transition: filter 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.artwork img.underdrawing-loading {
+    filter: 
+        grayscale(1) 
+        brightness(0.95)
+        contrast(1.2)
+        blur(2px);
+    background-image: linear-gradient(
+        45deg,
+        rgba(200, 200, 200, 0.3) 0%,
+        rgba(220, 220, 220, 0.3) 10%,
+        transparent 10%,
+        transparent 20%,
+        rgba(200, 200, 200, 0.3) 20%
+    );
+    background-size: 20px 20px;
+    animation: skeletonShimmer 2s infinite;
+}
+
+.artwork img.underdrawing-loaded {
+    filter: none;
+    animation: paintInColor 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes paintInColor {
+    0% {
+        filter: grayscale(1) brightness(0.9) contrast(1.1);
+        opacity: 0.8;
+    }
+    50% {
+        filter: grayscale(0.5) brightness(0.95) contrast(1.05);
+    }
+    100% {
+        filter: grayscale(0) brightness(1) contrast(1);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   3. CURATOR TOUR MODE STYLES
+   ======================================== */
+
+.curator-tour-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 50;
+}
+
+.curator-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(139, 115, 85, 0.9), rgba(212, 165, 116, 0.8));
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+.curator-toggle:hover {
+    transform: scale(1.1) translateY(-5px);
+    background: linear-gradient(135deg, rgba(139, 115, 85, 1), rgba(212, 165, 116, 1));
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
+}
+
+.curator-toggle:active {
+    transform: scale(0.95);
+}
+
+.curator-icon {
+    display: inline-block;
+    animation: curatorPulse 3s ease-in-out infinite;
+}
+
+@keyframes curatorPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.curator-panel {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 115, 85, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.12);
+    padding: 0;
+    animation: panelSlideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes panelSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.curator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.1);
+}
+
+.curator-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin: 0;
+    color: #2C3E50;
+}
+
+.curator-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.curator-close:hover {
+    color: #333;
+}
+
+.curator-content {
+    padding: 20px;
+}
+
+.tour-narrative {
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+.narrative-intro {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+    font-style: italic;
+    margin: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.narrative-intro.narrative-fade-in {
+    animation: narrativeFadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes narrativeFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tour-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tour-controls label {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.tour-controls input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.tour-volume-slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, rgba(139, 115, 85, 0.2), rgba(139, 115, 85, 0.4));
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.tour-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(139, 115, 85, 0.8);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.tour-volume-slider::-webkit-slider-thumb:hover {
+    background: rgba(139, 115, 85, 1);
+}
+
+.tour-volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(139, 115, 85, 0.8);
+    cursor: pointer;
+    border: none;
+}
+
+/* ========================================
+   PAGE TRANSITION EFFECT
+   ======================================== */
+
+body.page-transitioning {
+    animation: pageTransitionOut 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes pageTransitionOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .curator-tour-container {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .curator-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .curator-panel {
+        width: 280px;
+        bottom: 70px;
+    }
+
+    .palette-loader {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* ========================================
+   CHIAROSCURO LIGHT (已在JS中实现)
+   ======================================== */
+
+#chiaroscuroLight {
+    will-change: transform;
+    transition: none;
+}
+
+#chiaroscuroLight:hover {
+    filter: blur(40px) !important;
+}
+
+/* ========================================
+   CANVAS TEXTURE OVERLAY ENHANCEMENT
+   ======================================== */
+
+#canvasTextureOverlay {
+    mix-blend-mode: multiply;
+}
+
+/* 悬停时增强纹理 */
+.artwork:hover ~ #canvasTextureOverlay {
+    opacity: 0.12;
+}
+
+/* ========================================
+   SMOOTH SCROLLING & ANIMATIONS
+   ======================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* 全局过渡缓动 - 高级感核心 */
+* {
+    --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 元素进入视图时的淡入 */
+.reveal-divider {
+    animation: fadeInReveal 0.8s var(--ease-smooth) forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
