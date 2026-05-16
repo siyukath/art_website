@@ -112,46 +112,115 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 4. Spatial Gallery: Pan & Zoom Logic
+    // 4. Spatial Gallery: Horizontal 3D Scroll
     // ==========================================
     function initGalleryPanZoom() {
         const world = document.getElementById('world');
+        const viewport = document.querySelector('.viewport');
         const gallerySection = document.querySelector('.spatial-gallery-section');
-        if (!world || !gallerySection) return;
-
-        let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
-        let currentScale = 1, targetScale = 1;
-        let isDragging = false;
-        let startX, startY;
+        const artworks = document.querySelectorAll('.artwork');
         
+        if (!world || !viewport || !gallerySection || artworks.length === 0) return;
+
+        let scrollPosition = 0;
+        let targetScrollPosition = 0;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartScroll = 0;
+        let autoScrollDirection = 1;
+        const autoScrollSpeed = 0.5;
+        const artworkWidth = 35; // vw
+        const artworkMargin = 4; // vw
+        const totalItemWidth = artworkWidth + artworkMargin * 2;
+        let maxScroll = Math.max(0, (artworks.length - 1) * totalItemWidth * (window.innerWidth / 100));
+
+        // Drag to scroll horizontally
         gallerySection.addEventListener('mousedown', (e) => {
             isDragging = true;
-            startX = e.clientX - targetX;
-            startY = e.clientY - targetY;
-            // Removed mouseDownPos from global scope, handled locally in Modal logic
+            dragStartX = e.clientX;
+            dragStartScroll = targetScrollPosition;
         });
 
         window.addEventListener('mouseup', () => isDragging = false);
+        
         window.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            targetX = e.clientX - startX;
-            targetY = e.clientY - startY;
+            const dragDistance = e.clientX - dragStartX;
+            targetScrollPosition = dragStartScroll - dragDistance * 1.2;
+            targetScrollPosition = Math.max(0, Math.min(targetScrollPosition, maxScroll));
         });
 
+        // Mouse wheel to scroll horizontally
         gallerySection.addEventListener('wheel', (e) => {
             e.preventDefault();
-            targetScale -= e.deltaY * 0.001;
-            targetScale = Math.max(0.3, Math.min(targetScale, 3)); 
+            targetScrollPosition += e.deltaY * 0.5;
+            targetScrollPosition = Math.max(0, Math.min(targetScrollPosition, maxScroll));
         }, { passive: false });
 
+        // Apply 3D transforms based on scroll position
+        function updateArtworkTransforms() {
+            const centerPosition = viewport.offsetWidth / 2;
+            
+            artworks.forEach((artwork, index) => {
+                const artworkElement = artwork.querySelector('img');
+                if (!artworkElement) return;
+
+                // Calculate position relative to scroll
+                const artworkCenterX = (index * totalItemWidth * (window.innerWidth / 100)) 
+                                     - scrollPosition 
+                                     + (totalItemWidth * (window.innerWidth / 100)) / 2;
+                const distanceFromCenter = artworkCenterX - centerPosition;
+                
+                // Normalize distance (-1 to 1)
+                const normalizedDistance = Math.max(-1, Math.min(1, distanceFromCenter / (centerPosition * 0.8)));
+                
+                // Calculate perspective tilt (Y rotation based on horizontal distance)
+                const rotationY = normalizedDistance * 25; // max 25 degrees tilt
+                
+                // Calculate scale and opacity (closer to center = larger and more opaque)
+                const scale = 1 - Math.abs(normalizedDistance) * 0.15;
+                const opacity = 1 - Math.abs(normalizedDistance) * 0.2;
+                
+                // Calculate depth (Z position for perspective)
+                const depth = -Math.abs(normalizedDistance) * 200;
+                
+                // Apply 3D transforms
+                artwork.style.transform = `
+                    rotateY(${rotationY}deg) 
+                    scale(${scale}) 
+                    translateZ(${depth}px)
+                `;
+                artwork.style.opacity = Math.max(0.6, opacity);
+            });
+        }
+
+        // Smooth animation loop
         function render() {
-            currentX += (targetX - currentX) * 0.08;
-            currentY += (targetY - currentY) * 0.08;
-            currentScale += (targetScale - currentScale) * 0.1;
-            world.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+            if (!isDragging) {
+                targetScrollPosition += autoScrollSpeed * autoScrollDirection;
+                if (targetScrollPosition >= maxScroll) {
+                    targetScrollPosition = maxScroll;
+                    autoScrollDirection = -1;
+                } else if (targetScrollPosition <= 0) {
+                    targetScrollPosition = 0;
+                    autoScrollDirection = 1;
+                }
+            }
+
+            scrollPosition += (targetScrollPosition - scrollPosition) * 0.1;
+            world.style.transform = `translateX(-${scrollPosition}px)`;
+            updateArtworkTransforms();
             requestAnimationFrame(render);
         }
+        
         render();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            maxScroll = Math.max(0, (artworks.length - 1) * totalItemWidth * (window.innerWidth / 100));
+            targetScrollPosition = Math.max(0, Math.min(targetScrollPosition, maxScroll));
+            scrollPosition = Math.max(0, Math.min(scrollPosition, maxScroll));
+        });
     }
 
     // ==========================================
@@ -201,26 +270,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateModal(index) {
             const item = artworks[index];
+            if (!item) return;
+            
             const imgEl = item.querySelector('img');
+            elements.img.src = imgEl?.src || '';
+            elements.title.textContent = item.dataset.title || item.getAttribute('data-title') || 'Untitled';
+            elements.medium.textContent = item.dataset.medium || item.getAttribute('data-medium') || 'Unknown Medium';
+            elements.size.textContent = item.dataset.size || item.getAttribute('data-size') || 'Dimensions variable';
+            elements.year.textContent = item.dataset.year || item.getAttribute('data-year') || '2024';
+        }
 
-            elements.img.src = imgEl ? imgEl.src : '';
-            elements.title.textContent = item.getAttribute('data-title') || 'Untitled';
-            elements.medium.textContent = item.getAttribute('data-medium') || 'Unknown Medium';
-            elements.size.textContent = item.getAttribute('data-size') || 'Dimensions variable';
-            elements.year.textContent = item.getAttribute('data-year') || '2024';
+        function handleArtworkClick(index) {
+            currentIndex = index;
+            updateModal(currentIndex);
+            modal.classList.add('active');
         }
 
         artworks.forEach((item, index) => {
-            item.addEventListener('mouseup', (e) => {
-                const dx = Math.abs(e.clientX - mouseDownPos.x);
-                const dy = Math.abs(e.clientY - mouseDownPos.y);
-
-                if (dx < 5 && dy < 5) {
-                    currentIndex = index;
-                    updateModal(currentIndex);
-                    modal.classList.add('active');
-                }
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleArtworkClick(index);
             });
+
+            const img = item.querySelector('img');
+            if (img) {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    handleArtworkClick(index);
+                });
+            }
         });
 
         function closeModal() { modal.classList.remove('active'); }

@@ -106,26 +106,93 @@ body { background-color: var(--bg-color); color: var(--text-dark); font-family: 
 }
 
 /* =========================================
-   空间画廊 (保持不变)
+   空间画廊 - Horizontal 3D Scroll Gallery
    ========================================= */
 .spatial-gallery-section { 
     position: relative; 
     width: 100vw; 
-    height: 80vh; 
-    background: rgb(252, 252, 253); /* semi-transparent so the ink animation continues */
+    height: 90vh; 
+    background: rgb(255, 255, 255);
     overflow: hidden; 
-    cursor: grab; 
+    cursor: grab;
+    perspective: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+    z-index: 1;
 }
 .spatial-gallery-section:active { cursor: grabbing; }
 .gallery-instructions { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); z-index: 10; font-size: 0.55rem; letter-spacing: 1.5px; color: #777; pointer-events: none; text-transform: uppercase;}
-.viewport { width: 100%; height: 100%; perspective: 1000px; }
-.world { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transform-origin: center center; transition: transform 0.1s ease-out; }
 
-.artwork { position: absolute; top: 50%; left: 50%; display: flex; flex-direction: column; align-items: center; cursor: pointer; will-change: transform; }
-.artwork img { max-height: 50vh; max-width: 40vw; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.1); transition: transform 0.4s ease, box-shadow 0.4s ease; pointer-events: none; }
-.artwork:hover img { transform: translateY(-10px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
-.artwork .caption { font-family: var(--font-serif); margin-top: 15px; font-size: 1.5rem; font-style: italic; opacity: 0; transition: opacity 0.4s ease; color: #444;}
-.artwork:hover .caption { opacity: 1; }
+.viewport { 
+    width: 100%; 
+    flex: 1;
+    overflow: hidden;
+    perspective: 1200px;
+}
+
+.world { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    transform-style: preserve-3d; 
+    transform-origin: center center; 
+    display: flex;
+    align-items: center;
+    will-change: transform;
+    z-index: 2;
+}
+
+.artwork { 
+    position: relative;
+    flex-shrink: 0;
+    width: 30vw;
+    height: 100%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    will-change: transform;
+    transform-style: preserve-3d;
+    margin: 0 3vw;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.artwork img { 
+    max-height: 60vh; 
+    max-width: 100%; 
+    object-fit: contain; 
+    /*box-shadow: 0 20px 50px rgba(0,0,0,0.1); */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease; 
+    pointer-events: auto; 
+}
+
+.artwork:hover img { 
+    transform: translateY(-15px) scale(1.03); 
+    /*box-shadow: 0 30px 70px rgba(0,0,0,0.2);  */
+    filter: brightness(1.05);
+}
+
+.artwork:hover { z-index: 5; }
+
+.artwork .caption { 
+    font-family: var(--font-serif); 
+    font-size: 1.3rem; 
+    font-style: italic; 
+    opacity: 0; 
+    transition: opacity 0.4s ease; 
+    color: #444;
+    text-align: center;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.artwork:hover .caption { 
+    opacity: 1 !important; 
+}
 
 /* =========================================
    About 区域 (保持不变)
@@ -148,7 +215,7 @@ body { background-color: var(--bg-color); color: var(--text-dark); font-family: 
    ========================================= */
 .artwork-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #FAFAFA; z-index: 1000; display: flex; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
 .artwork-modal.active { opacity: 1; pointer-events: auto; }
-.close-modal-btn { position: absolute; top: 40px; right: 5vw; background: none; border: none; font-family: var(--font-serif); font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dark); cursor: pointer; z-index: 1001; transition: opacity 0.3s ease; text-transform: uppercase;}
+.close-modal-btn { position: absolute; top: 40px; right: 5vw; background: none; border: none; font-family: var(--font-serif); font-size: 1rem; letter-spacing: 2px; color: var(--text-dark); cursor: pointer; z-index: 1001; transition: opacity 0.3s ease; text-transform: uppercase;}
 .close-modal-btn:hover { color: #95d35f }
 .modal-split-container { display: flex; width: 100%; height: 100%; }
 .modal-left { flex: 1.2; height: 100%; display: flex; justify-content: center; align-items: center; padding: 120px; background-color: #ffffff; }
@@ -343,8 +410,8 @@ a:hover, .artwork:hover, .artwork-trigger:hover, button:hover {
     position: fixed;
     top: 0;
     left: 0;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     /* CHANGED: Anchor the red to the right side (80% 50%) */
     background: radial-gradient(circle at 80% 50%, 
         rgba(235, 100, 80, 0.6) 0%,   
@@ -380,7 +447,7 @@ a:hover, .artwork:hover, .artwork-trigger:hover, button:hover {
 /* Blob morphing animation for uneven, liquid edges */
 @keyframes organicWave {
     0% { 
-        width: 16px; height: 16px; opacity: 1;
+        width: 24px; height: 24px; opacity: 1;
         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Uneven shape */
         transform: translate(-50%, -50%) rotate(0deg);
     }
@@ -453,10 +520,9 @@ a:hover, .artwork:hover, .artwork-trigger:hover, button:hover {
 @media (max-width: 900px) {
     .carousel-nav { top: 35%; /* Adjusts for mobile layout where image is on top */ }
 }
-/* =========================================
-   Artwork Modal Dissolve Transitions
-   ========================================= */
-/* Target the image and the text container for simultaneous fading */
-#modalImg, .modal-right {
-    transition: opacity 1s ease-in-out; /* Reduced from 2s to 1s for smoother, quicker transitions */
+
+
+/* Hide the default system cursor everywhere */
+* {
+    cursor: none !important;
 }
