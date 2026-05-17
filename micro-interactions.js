@@ -17,7 +17,6 @@ class MicroInteractions {
         this.initCanvasTextureOverlay();
         this.initChiaroscuroLightCursor();
         this.initUnderdrawingScrollEffect();
-        this.initCuratorTourMode();
         this.initPageTransitionEffects();
     }
 
@@ -223,81 +222,7 @@ class MicroInteractions {
         artworks.forEach(img => observer.observe(img));
     }
 
-    /**
-     * 5. CURATOR TOUR MODE
-     * 策展人导览模式 - 优雅的叙事线 + 音效
-     */
-    initCuratorTourMode() {
-        const tourHTML = `
-            <div class="curator-tour-container">
-                <button class="curator-toggle" title="导览模式">
-                    <span class="curator-icon">🎧</span>
-                </button>
-                <div class="curator-panel" style="display: none;">
-                    <div class="curator-header">
-                        <h3>策展人导览</h3>
-                        <button class="curator-close">&times;</button>
-                    </div>
-                    <div class="curator-content">
-                        <div class="tour-narrative">
-                            <p class="narrative-intro">欢迎来到我的艺术世界。每一幅作品都讲述了一个深刻的故事...</p>
-                        </div>
-                        <div class="tour-controls">
-                            <label>
-                                <input type="checkbox" id="tourAudio" checked>
-                                启用音效
-                            </label>
-                            <input type="range" id="tourVolume" min="0" max="100" value="30" class="tour-volume-slider">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        if (!document.querySelector('.curator-tour-container')) {
-            document.body.insertAdjacentHTML('beforeend', tourHTML);
-        }
-
-        // 导览开关逻辑
-        const toggleBtn = document.querySelector('.curator-toggle');
-        const panel = document.querySelector('.curator-panel');
-        const closeBtn = document.querySelector('.curator-close');
-
-        toggleBtn?.addEventListener('click', () => {
-            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-            if (panel.style.display === 'block') {
-                this.playPaperRustleSound();
-            }
-        });
-
-        closeBtn?.addEventListener('click', () => {
-            panel.style.display = 'none';
-        });
-
-        // 监听作品集元素并显示相应的叙事
-        const artworks = document.querySelectorAll('.artwork');
-        const narratives = {
-            'Arches': '这个系列探索了建筑的永恒性与人类记忆的脆弱性之间的对话...',
-            'Jimen Yanshu': '古老的文字在时间中沉默，却以颜色继续诉说...',
-            'New Death': '死亡不是终结，而是另一种开始的代喻...',
-            'Bone & Iris': '生物形态的复杂性映射了内心世界的广阔...',
-            'Window at Night': '窗外的夜晚承载着无数未诉说的思念...',
-        };
-
-        artworks.forEach(artwork => {
-            artwork.addEventListener('mouseenter', () => {
-                const title = artwork.dataset.title;
-                const narrative = narratives[title] || `欣赏作品《${title}》创作于 ${artwork.dataset.year}...`;
-                
-                const narrativeEl = document.querySelector('.narrative-intro');
-                if (narrativeEl && panel.style.display !== 'none') {
-                    narrativeEl.textContent = narrative;
-                    narrativeEl.classList.add('narrative-fade-in');
-                    setTimeout(() => narrativeEl.classList.remove('narrative-fade-in'), 600);
-                }
-            });
-        });
-    }
+    // Curator tour removed per request
 
     /**
      * PAGE TRANSITION EFFECTS
@@ -315,32 +240,7 @@ class MicroInteractions {
         });
     }
 
-    /**
-     * UTILITY: Play Paper Rustle Sound
-     * 纸张翻动音效
-     */
-    playPaperRustleSound() {
-        try {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-
-            oscillator.type = 'triangle';
-            oscillator.frequency.setValueAtTime(150, audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.1);
-
-            gain.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-
-            oscillator.connect(gain);
-            gain.connect(audioContext.destination);
-
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.1);
-        } catch (e) {
-            // 浏览器不支持Web Audio API，静默处理
-        }
-    }
+    // playPaperRustleSound removed with curator tour
 }
 
 // 初始化微交互系统
