@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Siyu Zhong, writing</title>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+SC:wght@400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <a class="home" href="index.html">Siyu Zhong</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="index.html#all-works">Works</a>
+    <a href="writing.html" aria-current="page">Writing</a>
+    <a href="index.html#about">About</a>
+  </nav>
+</header>
+
+<main>
+  <section class="intro g">
+    <div>
+      <h1>Written Fragments</h1>
+      <p>I paint first, without a sketch. When a painting is done I write to find what it was. These are the sentences the paintings left behind.</p>
+    </div>
+  </section>
+  <div class="frags g" id="frags"></div>
+  <section class="aside g" aria-label="A note on Borges">
+    <div><p>Borges, in Death and the Compass: a man stands in a house he feels to be endless and still growing, and understands that what makes it seem so large is the shadows, the symmetry, the mirrors, the long years, his own unfamiliarity, the solitude.</p></div>
+  </section>
+  <section class="notes-head g" aria-labelledby="nh">
+    <div>
+      <h2 id="nh">Notes on the paintings</h2>
+      <p>Shorter and plainer than the fragments: where a painting came from, and what it is of.</p>
+    </div>
+  </section>
+  <div class="frags g" id="notes"></div>
+  <section class="coda g">
+    <div>
+      <p lang="zh-Hans">或许我们的血肉走不完这个时代了。或许这正是我仍等在这里的原因。</p>
+      <p>Perhaps our flesh will not make it to the end of this era. Perhaps that is exactly why I am still waiting here.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>All works and texts © Siyu Zhong</span>
+  <a href="https://www.instagram.com/siyukathart/">Instagram</a>
+</footer>
+
+<script src="assets/works.js"></script>
+<script>
+(function () {
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+  var order = ["jimen-yanshu", "playground", "window-at-night", "apparition", "wet-fire"];
+  var html = "";
+  order.forEach(function (slug) {
+    var w = window.WORKS.filter(function (x) { return x.slug === slug; })[0];
+    if (!w || !w.fz) return;
+    html += '<article class="frag">' +
+      '<a class="thumb pic" href="work.html#' + w.slug + '" aria-label="' + esc(w.title) + ', see the painting"><img src="img/' + w.slug + '-900.jpg" alt="" loading="lazy"></a>' +
+      '<div class="txt"><h2>' + esc(w.title) + '</h2>' +
+      '<p class="zhp" lang="zh-Hans">' + esc(w.fz) + '</p><p class="enp">' + esc(w.fe) + '</p></div></article>';
+  });
+  document.getElementById("frags").innerHTML = html;
+  var notes = ["south-of-luozhuang", "arches", "in-remembrance", "apparition", "visitation", "biophilia"];
+  var nh = "";
+  notes.forEach(function (slug) {
+    var w = window.WORKS.filter(function (x) { return x.slug === slug; })[0];
+    if (!w || !w.note) return;
+    nh += '<article class="note-row">' +
+      '<a class="thumb pic" href="work.html#' + w.slug + '" aria-label="' + esc(w.title) + ', see the painting"><img src="img/' + w.slug + '-900.jpg" alt="" loading="lazy"></a>' +
+      '<div class="txt"><h3>' + esc(w.title) + '</h3><span class="meta">' + w.year + ', ' + esc(w.medium || window.MEDIUM).toLowerCase() + ', ' + esc(w.size) + '</span>' +
+      '<p>' + esc(w.note) + '</p></div></article>';
+  });
+  document.getElementById("notes").innerHTML = nh;
+})();
+</script>
+</body>
+</html>

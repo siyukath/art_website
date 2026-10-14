@@ -1,211 +1,183 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siyu Zhong</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="micro-interactions.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Siyu Zhong</title>
+<meta name="description" content="Siyu Zhong, painter. Paintings in oil, 2024 to 2026.">
+<meta property="og:title" content="Siyu Zhong">
+<meta property="og:description" content="Paintings in oil, 2024 to 2026.">
+<meta property="og:image" content="https://siyuzhong.com/img/og.jpg">
+<meta property="og:url" content="https://siyuzhong.com/">
+<link rel="canonical" href="https://siyuzhong.com/">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+SC:wght@400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
-    <nav class="top-nav">
-        <div class="logo">SIYU ZHONG</div>
-        <div class="nav-links">
-            <a href="#home">HOME</a>
-            <a href="gallery.html" class="transition-link">ARCHIVE</a>
-            <a href="#about">ABOUT</a>
-        </div>
-    </nav>
+<div class="home-page" id="page" style="position:relative">
+<header class="top">
+  <a class="home" href="index.html">Siyu Zhong</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#all-works">Works</a>
+    <a href="writing.html">Writing</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
 
-    <section class="hero" id="home">
-        <canvas id="inkCanvas"></canvas>
-        <div class="hero-content" id="heroContent">
-            <h1 class="artist-name">Siyu Zhong</h1>
-            <p class="hero-quote">
-                Painting the rooms<br>
-                that belong to no one
-            </p>
-            <div class="scroll-indicator">
-                <div class="scroll-line"></div>
-            </div>
-        </div>
-    </section>
+<section class="hero g" id="hero" aria-labelledby="name">
+  <canvas id="ink" aria-hidden="true"></canvas>
+  <div class="hero-l">
+    <h1 class="name" id="name">Siyu Zhong <span lang="zh-Hans">钟思宇</span></h1>
+    <p class="tag"><span>Paintings in oil</span><span>2024 to 2026</span></p>
+  </div>
+  <div class="hero-cap cap">
+    <span class="t">Jimen Yanshu</span>
+    <span class="z" lang="zh-Hans">蓟门烟树</span>
+    <span>2026, oil on canvas</span>
+    <span>24 × 16 in</span>
+  </div>
+  <figure class="hero-pic pic"><a href="work.html#jimen-yanshu"><img src="img/jimen-yanshu-2000.jpg" alt="Jimen Yanshu, 2026, oil on canvas" width="1466" height="2000" fetchpriority="high"></a></figure>
+</section>
 
-    <div class="scroll-divider-container reveal-divider">
-        <div class="animated-line"></div>
+<main>
+  <section class="chapter g" aria-labelledby="np">
+    <div>
+      <h2 id="np">Non-Places</h2>
+      <p class="line">It existed only in relation to a residential block that was not itself.</p>
+      <p class="src">From the note on South of Luozhuang. Paintings of Haidian, Beijing, 2024 to 2026.</p>
     </div>
+  </section>
 
-    <section class="spatial-gallery-section" id="gallery">
-        <div class="gallery-instructions">
-            <p>Click & Drag to scroll. Scroll wheel to navigate. Click artwork for details.</p>
-        </div>
-        
-        <div class="viewport" id="viewport">
-            <div class="world" id="world">
-                <div class="artwork" 
-                     data-title="Arches" data-medium="Oil on Canvas" data-size="60 in x 60 in" data-year="2025">
-                    <img src="img/Zhong_Siyu_Arches_2025.jpg" alt="Arches">
-                    <div class="caption">Arches</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Jimen Yanshu" data-medium="Oil on Canvas" data-size="16 in x 24 in" data-year="2026">
-                    <img src="img/Zhong_Siyu_Jimen_Yanshu_2026.jpg" alt="Jimen Yanshu">
-                    <div class="caption">Jimen Yanshu</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="In Remembrance of the Family" data-medium="Oil on Canvas" data-size="12 in x 12 in" data-year="2025">
-                    <img src="img/Zhong_Siyu_In_Remembrance_of_the_Family_2025.jpg" alt="In Remembrance of the Family">
-                    <div class="caption">In Remembrance of the Family</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Playground" data-medium="Oil on Canvas" data-size="36 in x 48 in" data-year="2025">
-                    <img src="img/Zhong_Siyu_Playground_2025.jpg" alt="Playground">
-                    <div class="caption">Playground</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="South of Luozhuang" data-medium="Oil on Canvas" data-size="16 in x 16 in" data-year="2026">
-                    <img src="img/Zhong_Siyu_South_of_Luozhuang_2026.jpg" alt="South of Luozhuang">
-                    <div class="caption">South of Luozhuang</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Window at Night" data-medium="Oil on Canvas" data-size="12 in x 12 in" data-year="2026">
-                    <img src="img/Zhong_Siyu_Window_at_Night_2026.jpg" alt="Window at Night">
-                    <div class="caption">Window at Night</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="New Death" data-medium="Oil on Canvas" data-size="72 in x 48 in" data-year="2024">
-                    <img src="img/Zhong_Siyu_New_Death_2024.jpg" alt="New Death">
-                    <div class="caption">New Death</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Dignity in Defeats" data-medium="Oil on Canvas" data-size="50 in x 30 in" data-year="2025">
-                    <img src="img/Zhong_Siyu_Dignity_in_Defeats_2025.jpg" alt="Dignity in Defeats">
-                    <div class="caption">Dignity in Defeats</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Mud Ice" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_Mud_Ice_2024.jpg" alt="Mud Ice">
-                    <div class="caption">Mud Ice</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Milk Tooth" data-medium="Oil on Canvas" data-size="16 in x 24 in" data-year="2026">
-                    <img src="img/Zhong_Siyu_Milk_Tooth_2026.jpg" alt="Milk Tooth">
-                    <div class="caption">Milk Tooth</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Relics" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_Relics_2024.jpg" alt="Relics">
-                    <div class="caption">Relics</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="To Your Mountain" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_To_Your_Mountain_2024.jpg" alt="To Your Mountain">
-                    <div class="caption">To Your Mountain</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Untitled 7" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_Untitled_7_2024.jpg" alt="Untitled 7">
-                    <div class="caption">Untitled 7</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Fine Rain" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_Fine_Rain_2024.jpg" alt="Fine Rain">
-                    <div class="caption">Fine Rain</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Texture" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_Texture_2024.jpg" alt="Texture">
-                    <div class="caption">Texture</div>
-                </div>
-
-                <div class="artwork"
-                     data-title="Untitled" data-medium="Oil on Canvas" data-size="TBD" data-year="2024">
-                    <img src="img/Zhong_Siyu_Untitled_2024.jpg" alt="Untitled">
-                    <div class="caption">Untitled</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="scroll-divider-container reveal-divider">
-        <div class="animated-line"></div>
+  <section class="pair g" aria-label="Wet Fire and South of Luozhuang">
+    <div class="row">
+      <figure class="pic" style="--h:24;--w:100">
+        <a href="work.html#wet-fire"><img src="img/wet-fire-2000.jpg" alt="Wet Fire, 2026, oil on canvas" width="1455" height="2000" loading="lazy"></a>
+        <figcaption class="cap"><span class="t">Wet Fire</span><span>2026, oil on canvas, 24 × 16 in</span></figcaption>
+      </figure>
+      <figure class="pic" style="--h:16;--w:64">
+        <a href="work.html#south-of-luozhuang"><img src="img/south-of-luozhuang-2000.jpg" alt="South of Luozhuang, 2026, oil on canvas" width="1915" height="2000" loading="lazy"></a>
+        <figcaption class="cap"><span class="t">South of Luozhuang</span><span>2026, oil on canvas, 16 × 16 in</span></figcaption>
+      </figure>
     </div>
+  </section>
 
-    <section class="about-section" id="about">
-        <div class="about-container">
-            <h2 class="reveal-text section-title">About the Artist</h2>
-            <p class="reveal-text">
-                Siyu Zhong is a painter working between Beijing and Detroit. Her work investigates memory, ruin, and the spaces that survive their original use.
-            </p>
-            <p class="reveal-text">
-                Working primarily in oil on canvas, she paints interiors, thresholds, and figures drawn from memory: a demolished hutong, the Yuan dynasty ramparts beside which she grew up, a stairwell of unclear function in an unspecified institution. Her work investigates what she calls "specifically anonymous" places, sites stripped of their original meaning by historical violence rather than by globalization.
-            </p>
-
-            <div class="contact-info reveal-text">
-                <a href="mailto:siyukath@gmail.com" class="email-link">siyukath@gmail.com</a>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/siyukathart/" target="_blank">Instagram</a>
-                    <a href="https://www.linkedin.com/in/siyu-zhong/" target="_blank">LinkedIn</a>
-                    <a href="#" target="_blank">Portfolio</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="artwork-modal" id="artworkModal">
-        <button class="close-modal-btn" id="closeModalBtn">CLOSE</button>
-        
-        <button class="carousel-nav prev-btn" id="prevBtn">&#8592;</button>
-        <button class="carousel-nav next-btn" id="nextBtn">&#8594;</button>
-
-        <div class="modal-split-container">
-            <div class="modal-left">
-                <img id="modalImg" src="" alt="Artwork Detail">
-            </div>
-            <div class="modal-right">
-                <div class="modal-info-content">
-                    <h2 id="modalTitle" class="modal-title">Artwork Title</h2>
-                    
-                    <div class="info-table">
-                        <div class="info-row">
-                            <span class="info-label">Medium</span>
-                            <span class="info-value" id="modalMedium">Oil Painting</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Size</span>
-                            <span class="info-value" id="modalSize">60 in x 60 in</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Year</span>
-                            <span class="info-value" id="modalYear">2025</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="chapter g" aria-labelledby="ap">
+    <div>
+      <h2 id="ap">Apparition</h2>
+      <p class="line">The image of something arriving, but no name for what arrived.</p>
+      <p class="src">From the note on Visitation. Two paintings, 2026.</p>
     </div>
-    
+  </section>
 
-    <script src="script.js"></script>
-    <script src="fluid-cursor.js"></script>
-    <script src="micro-interactions.js"></script>
+  <section class="pair g small" aria-label="Apparition and Visitation">
+    <div class="row">
+      <figure class="pic" style="--h:48;--w:100">
+        <a href="work.html#apparition"><img src="img/apparition-2000.jpg" alt="Apparition, 2026, oil on canvas" width="1193" height="2000" loading="lazy"></a>
+        <figcaption class="cap"><span class="t">Apparition</span><span>2026, oil on canvas, 48 × 30 in</span></figcaption>
+      </figure>
+      <figure class="pic" style="--h:40;--w:100">
+        <a href="work.html#visitation"><img src="img/visitation-2000.jpg" alt="Visitation, 2026, oil on canvas" width="1452" height="2000" loading="lazy"></a>
+        <figcaption class="cap"><span class="t">Visitation</span><span>2026, oil on canvas, 40 × 30 in</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="all" id="all-works" aria-labelledby="aw">
+    <div class="all-head">
+      <h2 id="aw">All works</h2>
+      <span id="all-count"></span>
+    </div>
+    <div id="groups"></div>
+  </section>
+
+  <section class="about g" id="about" aria-labelledby="ab">
+    <div class="col">
+      <h2 class="label" id="ab">About</h2>
+      <p class="bio">Siyu Zhong is a painter. She was born in Beijing, grew up in Haidian in the northwest of the city, and moved to the United States at fourteen. She studied at the Stamps School of Art &amp; Design at the University of Michigan, and lives and works between Beijing and California.</p>
+      <p class="stmt">I paint places that are hard to name. Most of them are in Haidian, and they are not the places people mean when they say Beijing. I paint from memory, in oil, and I don’t sketch. The paintings build up slowly, some of them over several months, poured, scraped back and painted over.</p>
+      <div class="contact">
+        <span class="email">siyukath@gmail.com</span>
+        <a href="https://www.instagram.com/siyukathart/">Instagram</a>
+      </div>
+    </div>
+    <div class="cv">
+      <div>
+        <span class="label">Exhibitions</span>
+        <ul>
+          <li><span class="y">2024</span><span><i>Bittersweet Bliss</i>, BA Senior Thesis Exhibition, Stamps Gallery, Ann Arbor, Michigan</span></li>
+          <li><span class="y">2023</span><span>Art in the Legislature, Michigan State Capitol, Lansing, Michigan. <i>Koi</i>, one-year installation</span></li>
+        </ul>
+      </div>
+      <div>
+        <span class="label">Collections</span>
+        <ul><li><span class="y">2025</span><span>Private collection</span></li></ul>
+      </div>
+      <div>
+        <span class="label">Awards</span>
+        <ul><li><span class="y">2023</span><span>William A. Lewis Watercolor Prize, Stamps School of Art &amp; Design, University of Michigan</span></li></ul>
+      </div>
+      <div>
+        <span class="label">Education</span>
+        <ul>
+          <li><span class="y">2026</span><span>M.S., Human-Computer Interaction, University of Michigan</span></li>
+          <li><span class="y">2025</span><span>B.A., Visual Design, Stamps School of Art &amp; Design, University of Michigan</span></li>
+          <li><span class="y">2025</span><span>B.S., Informatics, University of Michigan</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>All works © Siyu Zhong</span>
+  <a href="https://www.instagram.com/siyukathart/">Instagram</a>
+</footer>
+</div>
+
+<script src="assets/works.js"></script>
+<script src="assets/ink.js"></script>
+<script>
+(function () {
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+  /* the long side of each painting sets how tall it hangs in the list: twelve inches at 60%, sixty at 100% */
+  function scale(size) {
+    var nums = String(size).match(/\d+(\.\d+)?/g) || [];
+    var longest = 0; nums.forEach(function (n) { longest = Math.max(longest, parseFloat(n)); });
+    if (!longest) return 0.78;
+    return Math.min(1, Math.max(0.6, 0.6 + (longest - 12) / 48 * 0.4)).toFixed(3);
+  }
+  var words = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+  var years = window.WORKS.map(function (w) { return parseInt(w.year, 10); }).filter(function (y) { return y; });
+  var n = window.WORKS.length, cap = words[n] || (n > 20 && n < 30 ? "twenty-" + words[n - 20] : String(n));
+  document.getElementById("all-count").textContent = cap.charAt(0).toUpperCase() + cap.slice(1) + " paintings, " + Math.min.apply(null, years) + " to " + Math.max.apply(null, years);
+  var html = "";
+  window.SERIES.forEach(function (s) {
+    var list = window.WORKS.filter(function (w) { return w.series === s.id; });
+    if (!list.length) return;
+    html += '<section class="group" aria-label="' + esc(s.name) + '"><div class="group-head"><h3>' + esc(s.name) + '</h3><span>' + (s.note ? esc(s.note) + ', ' : '') + list.length + (list.length === 1 ? ' painting' : ' paintings') + '</span></div><div class="cells">';
+    list.forEach(function (w) {
+      var line = w.meta ? esc(w.meta) : (w.size ? w.year + ', ' + esc(w.size) : String(w.year));
+      html += '<a class="cell pic" href="work.html#' + w.slug + '" style="--s:' + scale(w.size) + ';--r:' + (w.ratio || 1) + '">' +
+        '<span class="frame"><img src="img/' + w.slug + '-900.jpg" srcset="img/' + w.slug + '-900.jpg 900w, img/' + w.slug + '-2000.jpg 2000w" sizes="(max-width: 760px) 45vw, 28vw" alt="' + esc(w.title + (w.year ? ", " + w.year : "") + ", oil on canvas") + '" loading="lazy"></span>' +
+        '<span class="cap"><span class="t">' + esc(w.title) + '</span><span>' + line + '</span></span></a>';
+    });
+    html += '</div></section>';
+  });
+  document.getElementById("groups").innerHTML = html;
+
+  /* the name moves into the header once the opening has scrolled away */
+  var page = document.getElementById("page"), hero = document.getElementById("hero");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      page.classList.toggle("past", !es[0].isIntersecting);
+    }, { rootMargin: "-80px 0px 0px 0px", threshold: 0 }).observe(hero);
+  } else { page.classList.add("past"); }
+})();
+</script>
 </body>
 </html>

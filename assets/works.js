@@ -1,0 +1,56 @@
+/* Siyu Zhong, paintings. One record per work. Sizes are height × width in inches.
+   Edit here and every page updates. "meta" replaces the year and size line when set; "medium" overrides the default. */
+window.SERIES = [
+  { id: "non-places", name: "Non-Places" },
+  { id: "apparition", name: "Apparition" },
+  { id: "figure-body", name: "Figure / Body" },
+  { id: "earlier", name: "Earlier work", note: "2024 to 2025" }
+];
+
+window.WORKS = [
+  { slug: "jimen-yanshu", title: "Jimen Yanshu", zh: "蓟门烟树", year: 2026, size: "24 × 16 in", series: "non-places", ratio: 0.733, focus: "47% 52%",
+    fz: "不太记得家旁边的公园，长大才知道，啊，蓟门烟树，原来也是北京不小的景点。当一个景区离生活地足够近，它的庄严性就在一次次上下学中被消磨掉了。然而当我离开足够久，恍然回头，记忆长出血肉，和其它童年中的景观长在一起，建筑，树木，清晨去摆放贡品的人，像菌群一样在记忆的骨架上铺延粘连，剖开时还带有隐隐颤动的组织，和因被过度注视而破裂的血管。蓟门烟树作为燕京八景之一，乾隆给它立碑的时候院没了，门没了，只剩下烟，被命名了八百年。我越过碑，在林间走着，知道没有帝王曾吊死在这些树上。",
+    fe: "I do not remember the park beside my home. Only later did I learn that it was Jimen Yanshu, one of the old sights of Beijing. When a famous place sits too close to daily life, its solemnity is worn down by years of walking to and from school. Only after I had been gone long enough, and turned back, did the memory grow flesh. It grew together with the other landscapes of my childhood, the buildings, the trees, the people who came at dawn to set out offerings, spreading and adhering over the skeleton of memory like a colony of fungus, still faintly trembling when you cut into it, its vessels burst from being looked at too long. By the time Qianlong set the stone, the courtyard was gone, the gate was gone, only the mist was left, named for eight hundred years. I walked past the marker, into the woods, knowing that no emperor had ever hanged himself from any of these trees." },
+  { slug: "wet-fire", title: "Wet Fire", year: 2026, size: "24 × 16 in", series: "non-places", ratio: 0.7275, focus: "55% 40%",
+    fz: "画房子的时候格外喜欢画窗，画窗的时候格外喜欢画光，画光的时候格外喜欢画火。画火，就厚涂一遍遍颜料压住回忆里的焦味。其实开始想画简单的房树人，但最后房只剩下窗，树只剩下叶，人倒是可以在窗后任何地方。小区的下午总是静静的，但是窗帘时有翻动。你知道房子里有老人居住，但你们的作息大相径庭。只有你不在的时候，窗后的人会挪到离光近一些的地方。下午两三点的阳光，熬干回忆里阴冷的角落，熬焦不清晰的细节。也是这时候，一些瞬间：回去的街景，和孩子逛过的文具店，已过世人的教诲，被烫得跳起来活跃起来。本可以跳更起劲一点的，但他们知道，你也知道，这火烧不大了。",
+    fe: "When I paint a house I most want to paint its windows. When I paint a window I most want to paint the light. When I paint the light I most want to paint fire. To paint fire is to lay down coat after coat of paint until it holds down the smell of burning in the memory. At first I meant to paint a simple house, a tree, a person. In the end the house was only a window, the tree only leaves, and the person could be anywhere behind the glass. The afternoons in the compound were always quiet, but the curtains moved from time to time. You know an old person lives in the house, but your hours and theirs do not meet. Only when you are gone does the one behind the window move closer to the light. The sun at two or three in the afternoon dries out the cold corners of memory and scorches the details that were never clear. It is then that certain moments, the street on the way home, the stationery shop I walked through with a child, the teachings of someone already dead, jump up scalded and come alive. They could have jumped harder, but they know, and you know too, that this fire will not grow.",
+    note: "Painting of a third building in the residential complex where I grew up in Haidian, Beijing. From the elevated walkway between buildings, one looks directly into other families' windows. The elderly residents who once raised children there now sit closer to the afternoon light, their figures dimming behind curtains." },
+  { slug: "south-of-luozhuang", title: "South of Luozhuang", year: 2026, size: "16 × 16 in", series: "non-places", ratio: 0.9575, focus: "68% 45%",
+    note: "I lived for years beside an empty lot south of Luozhuang in Haidian, Beijing, without ever learning that it had no name. It existed only in relation to a residential block that was not itself. A train track ran along its edge. Sometimes there were small fires. When I painted it, I was thinking of Lee Chang-dong's Burning, and of a barn I once watched burn, but only faintly. Mostly I was thinking about how a place can be lived against, every day, for years, and still refuse to give you its name." },
+  { slug: "plymouth", title: "1777 Plymouth Rd", year: 2026, size: "48 × 30 in", series: "non-places", ratio: 0.595, focus: "45% 40%" },
+  { slug: "arches", title: "Arches", year: 2025, size: "60 × 60 in", series: "non-places", ratio: 0.993, focus: "40% 45%", credit: "Photograph: Yu Han Yang",
+    note: "The buildings of my childhood neighborhood in Haidian have no traditional Chinese architectural lineage. They are crude materials imitating Western forms, rough Greek columns mixed with the three-point routine of school, in a Beijing district that does not feel particularly like Beijing. I did not grow up with cultural anchors. I am one of the post-2000 generation who absorbed everything off the internet, English-language films, foreign cities, other people's nostalgia, and used those to narrate a life that was not theirs. The disorientation I felt when I returned to the courtyard of my childhood was the thing I had to paint." },
+  { slug: "playground", title: "Playground", year: 2025, size: "48 × 30 in", series: "non-places", ratio: 0.756, focus: "50% 45%",
+    fz: "小时候的玩乐时间总是很少，经常在天黑前就被姥姥勒令回家。而我作为总是拖到最后的那一个，喜欢坐在滑梯上看天暗下去。那时候没有行星运行的概念，只是看着光带着他们的孩子慢慢从滑梯上飞走，而我从滑梯上滑下去，算是和同样喜欢熬到最后一刻的玩伴告别。",
+    fe: "As a child there was never much time to play. My grandmother would order me home before dark, and I, always the last to leave, liked to sit at the top of the slide and watch the sky go down. I had no notion then of planets in their orbits. I only watched the light carry its children slowly off the slide, and I slid down after them, which was my way of saying goodbye to the others who also liked to stay until the last moment." },
+  { slug: "in-remembrance", title: "In Remembrance of the Family", year: 2025, size: "12 × 12 in", series: "non-places", ratio: 0.9875, focus: "45% 62%",
+    note: "A small fire at the center of a courtyard, surrounded by stacked walls and the outline of a room that may no longer exist. In Chinese funeral practice, paper offerings are burned for the dead. But this fire is not large enough to be a ceremony, and the courtyard is not full enough to be a household." },
+  { slug: "window-at-night", title: "window at night", year: 2026, size: "12 × 12 in", series: "non-places", ratio: 1.0204, focus: "45% 60%",
+    fz: "是不对称、阴影、弱反光，和不属于我的兽。和家。和它被无限复制、命名、指认的形状。他们从房顶上看下来，夜幕低垂，使我失明。",
+    fe: "Asymmetry, shadow, weak reflection, and a beast that does not belong to me. And home. And its shape, copied without end, named, pointed at. They look down from the rooftops. The night comes down and blinds me." },
+  { slug: "relics", title: "Relics", year: 2024, size: "12 × 12 in", series: "non-places", ratio: 0.9844, focus: "55% 45%" },
+  { slug: "window-at-dusk", title: "window at Dusk", year: 2025, size: "12 × 12 in", series: "non-places", ratio: 1.0062, focus: "50% 40%" },
+  { slug: "apparition", title: "Apparition", year: 2026, size: "48 × 30 in", series: "apparition", ratio: 0.5965, focus: "52% 36%",
+    fz: "祝福过我的翅膀徘徊在你的伤口上。最近走了很多地方，很多被祝福被神眷顾的地方。站在教堂花窗的光瀑中，很容易让人相信此刻你正被庇护在天使的翅膀下。你可以，你有特权，去吃饱喝足，在车马劳顿中榨干自己的精力，听着导游讲解，埋头在宏大的历史叙事中。不去想，也不想去想，生活在这片浪漫土地上的人民，其实和游客有着一样庸俗的生活，他们的天使正徘徊在别人的伤口上。",
+    fe: "The wings that once blessed me now hover over your wound. Lately I have traveled to many places, many of them said to be blessed, watched over by God. Standing in the cascade of light from a church window, it is easy to believe you are sheltered under the wing of an angel. You may. You have the privilege to eat and drink your fill, to wear yourself out in the fatigue of travel, to follow the guide, to bury yourself in the grand narrative of history. Not to think, not to want to think, that the people who live on this romantic land lead lives as ordinary as any tourist's, and that their angels are hovering over someone else's wound.",
+    note: "This painting accreted over several months. The deep brown ground was poured, then scraped back. The green-white mass in the center is a kind of bodily emergence, something forming and dissolving at once. The yellow-gold horizon line near the middle is where light enters. The lower half holds the reflection of whatever has appeared above. I painted it during a period of thinking about old natural history museum displays, about the silence around sacred objects whose contexts have been lost." },
+  { slug: "visitation", title: "Visitation", year: 2026, size: "40 × 30 in", series: "apparition", ratio: 0.726, focus: "50% 30%",
+    note: "This painting accreted over several months. A white spiraling form rises through the center, neither cloud nor body, surrounded by two orange suns that may be the same sun seen twice. I was thinking about how religious paintings work when the religion has been removed: the image of something arriving, but no name for what arrived." },
+  { slug: "biophilia", title: "Biophilia", year: 2025, size: "40 × 60 in, diptych", series: "figure-body", ratio: 1.498, focus: "40% 55%",
+    note: "A two-panel painting of figures in the moment between falling and rising. The left figure has gone down. The right figure is partly upright. They share the same monochromatic ground, the same dawn light. The title comes from E.O. Wilson, but the painting is about the body's older relationship to collapse and recovery, before language gave it names." },
+  { slug: "milk-tooth", title: "milk tooth", year: 2026, size: "24 × 16 in", series: "figure-body", ratio: 0.7495, focus: "50% 45%" },
+  { slug: "fine-rain", title: "Fine Rain", year: 2026, size: "12 × 12 in", series: "figure-body", ratio: 0.9965, focus: "45% 35%" },
+  { slug: "power-of-dog", title: "Power of Dog", year: 2025, size: "12 × 12 in", series: "figure-body", ratio: 1.0, focus: "55% 45%" },
+  { slug: "to-your-mountain", title: "To Your Mountain", year: 2024, size: "", series: "earlier", ratio: 0.6278, focus: "50% 40%" },
+  { slug: "untitled-2024", title: "Untitled", year: 2024, size: "", series: "earlier", ratio: 0.7261, focus: "50% 35%" },
+  { slug: "ghost-of-an-iris", title: "Ghost of an Iris", year: "", size: "", meta: "Year and size to confirm", series: "earlier", ratio: 0.7427, focus: "50% 60%" },
+  { slug: "dignity-in-defeats", title: "Dignity in Defeats", year: 2025, size: "", series: "earlier", ratio: 1.6124, focus: "55% 50%" },
+  { slug: "bone-and-iris", title: "Bone and Iris", year: 2024, size: "6 × 24 in, triptych", series: "earlier", ratio: 0.2422, focus: "50% 40%" },
+  { slug: "untitled-2", title: "Untitled 2", year: "", size: "", meta: "Year and size to confirm", series: "earlier", ratio: 0.999, focus: "50% 50%" },
+  { slug: "untitled-7", title: "Untitled 7", year: 2024, size: "", series: "earlier", ratio: 1.0022, focus: "40% 40%" },
+  { slug: "pale-star", title: "Pale Star", year: 2024, size: "", series: "earlier", ratio: 1.0233, focus: "50% 50%" },
+  { slug: "mud-ice", title: "Mud Ice", year: 2024, size: "", series: "earlier", ratio: 0.7939, focus: "50% 50%" },
+  { slug: "texture", title: "Texture", year: 2024, size: "", series: "earlier", ratio: 0.995, focus: "50% 50%" }
+];
+
+window.MEDIUM = "Oil on canvas";

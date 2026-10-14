@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Siyu Zhong, painting</title>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+SC:wght@400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <a class="home" href="index.html">Siyu Zhong</a>
+  <nav class="nav" aria-label="Sections">
+    <a class="x" href="index.html#all-works">
+      <svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1"><path d="M.5.5l10 10M10.5.5L.5 10.5"/></svg>
+      All works
+    </a>
+  </nav>
+</header>
+
+<main class="view g">
+  <div class="pic"><img id="pic" alt=""></div>
+  <article id="text"></article>
+</main>
+
+<nav class="pn" aria-label="More paintings">
+  <a id="prev" href="#"><span>Previous</span><i id="prev-t"></i></a>
+  <a id="next" href="#"><span>Next</span><i id="next-t"></i></a>
+</nav>
+
+<footer class="foot">
+  <span>All works © Siyu Zhong</span>
+  <a href="https://www.instagram.com/siyukathart/">Instagram</a>
+</footer>
+
+<script src="assets/works.js"></script>
+<script>
+(function () {
+  var W = window.WORKS;
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+  function idx() {
+    var h = (location.hash || "").replace("#", "");
+    for (var i = 0; i < W.length; i++) if (W[i].slug === h) return i;
+    return 0;
+  }
+  function show() {
+    var i = idx(), w = W[i], p = W[(i - 1 + W.length) % W.length], n = W[(i + 1) % W.length];
+    var pic = document.getElementById("pic");
+    pic.src = "img/" + w.slug + "-2000.jpg";
+    pic.alt = w.title + (w.year ? ", " + w.year : "") + ", " + (w.medium || window.MEDIUM).toLowerCase();
+    var h = '<div class="cap"><h1>' + esc(w.title) + '</h1>' +
+      (w.zh ? '<span class="z" lang="zh-Hans">' + esc(w.zh) + '</span>' : '') +
+      (w.meta ? '<span>' + esc(w.meta) + '</span>' : '<span>' + w.year + ', ' + esc(w.medium || window.MEDIUM).toLowerCase() + '</span>' + (w.size ? '<span>' + esc(w.size) + '</span>' : '')) + '</div>';
+    if (w.fz) h += '<p class="zhp" lang="zh-Hans">' + esc(w.fz) + '</p><p class="enp">' + esc(w.fe) + '</p>';
+    else if (w.note) h += '<p class="note">' + esc(w.note) + '</p>';
+    h += '<figure>' +
+      '<div class="detail" role="img" aria-label="Detail of ' + esc(w.title) + ', the surface close up" style="background-image:url(img/' + w.slug + '-2000.jpg);background-position:' + (w.focus || "50% 50%") + '"></div>' +
+      '<figcaption class="lab">Detail</figcaption></figure>';
+    if (w.credit) h += '<p class="credit">' + esc(w.credit) + '</p>';
+    document.getElementById("text").innerHTML = h;
+    document.title = w.title + ", Siyu Zhong";
+    document.getElementById("prev").href = "#" + p.slug;
+    document.getElementById("prev-t").textContent = p.title;
+    document.getElementById("next").href = "#" + n.slug;
+    document.getElementById("next-t").textContent = n.title;
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+  document.addEventListener("keydown", function (e) {
+    if (e.target && /input|textarea/i.test(e.target.tagName)) return;
+    if (e.key === "ArrowRight") location.hash = document.getElementById("next").getAttribute("href");
+    if (e.key === "ArrowLeft") location.hash = document.getElementById("prev").getAttribute("href");
+  });
+  show();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* siyuzhong.com. One serif (Spectral), Chinese in Noto Serif SC.
+   Paper ground with a faint grain, white for the full list of works. A twelve column grid.
+   Nothing decorative: hairlines, air, and the paintings. */
+:root{
+  --paper:#EFEDE9; --white:#FBFAF8; --ink:#23221F; --soft:#4A4844; --muted:#77736C; --faint:#A39F97;
+  --hair:rgba(35,34,31,.14); --hair-soft:rgba(35,34,31,.09);
+  --serif:"Spectral", "Iowan Old Style", "Palatino", Georgia, serif;
+  --zh:"Noto Serif SC", "Songti SC", "STSong", serif;
+  --m:64px; --gap:40px; --inch:25px; --fh:380px;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{background:var(--paper) url(../img/grain-paper.png) repeat;background-size:320px 320px;font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:1px solid var(--ink);outline-offset:6px}
+img{max-width:100%;display:block}
+h1,h2,h3,p,figure{margin:0}
+i,em{font-style:italic}
+[lang="zh-Hans"]{font-family:var(--zh);font-weight:400}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* the grid */
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding-left:var(--m);padding-right:var(--m)}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:baseline;padding:28px var(--m) 0;font-size:15px;line-height:1.3}
+.top .home{letter-spacing:.01em;transition:opacity .5s ease}
+.home-page .top{position:absolute;top:0;left:0;right:0;z-index:3}
+.home-page .top .home{opacity:0}
+.home-page.past .top .home{opacity:1}
+.nav{display:flex;gap:36px}
+.nav a{color:var(--muted);transition:color .2s ease}
+.nav a:hover,.nav a[aria-current]{color:var(--ink)}
+.nav a.x{display:inline-flex;align-items:center;gap:9px}
+.nav a.x svg{position:relative;top:-1px}
+
+/* opening: the name at left, the first painting at right, both standing on one line */
+.hero{position:relative;min-height:100vh;min-height:100svh;padding-top:120px;padding-bottom:56px;align-content:end;align-items:end;overflow:hidden}
+#ink{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.6s ease;-webkit-mask-image:linear-gradient(to bottom,#000 58%,transparent 100%);mask-image:linear-gradient(to bottom,#000 58%,transparent 100%)}
+#ink.ready{opacity:1}
+.hero-l{grid-column:1 / 5;position:relative;display:flex;flex-direction:column;gap:30px;padding-bottom:4px}
+.name{font-weight:300;font-size:clamp(40px,4.4vw,62px);line-height:1;letter-spacing:-.008em;display:flex;flex-direction:column;gap:18px}
+.name [lang]{font-size:14px;letter-spacing:.34em;color:var(--soft);line-height:1}
+.tag{font-size:15px;color:var(--muted);line-height:1.5}
+.tag span{display:block}
+.hero-cap{grid-column:5 / 7;position:relative;text-align:right;align-items:flex-end;padding-bottom:4px}
+.hero-pic{grid-column:7 / 13;position:relative;justify-self:end}
+.hero-pic img{height:min(calc(100vh - 176px),760px);height:min(calc(100svh - 176px),760px);width:auto;max-width:100%}
+
+/* captions, the same everywhere: title, then one line of facts */
+.cap{display:flex;flex-direction:column;gap:3px;font-size:13.5px;line-height:1.4;color:var(--muted)}
+.cap .t{font-size:15px;font-style:italic;color:var(--ink)}
+.cap .z{font-size:12.5px;letter-spacing:.22em;color:var(--soft);margin:2px 0 1px}
+
+/* a painting on the wall: a hairline edge and a soft lift, nothing directional */
+.pic img{box-shadow:0 0 0 1px rgba(35,34,31,.05),0 1px 2px rgba(35,34,31,.08),0 18px 44px -28px rgba(35,34,31,.32)}
+.pic a{display:block}
+.pic img{transition:opacity .35s ease}
+.pic a:hover img{opacity:.94}
+
+/* a title for the group, a line from the writing */
+.chapter{padding-top:144px;padding-bottom:120px}
+.hero + main .chapter:first-child{padding-top:136px}
+.chapter > div{grid-column:2 / 8;display:flex;flex-direction:column;gap:26px}
+.chapter h2{font-weight:300;font-size:44px;line-height:1.05;letter-spacing:-.005em}
+.chapter .line{font-style:italic;font-size:22px;line-height:1.45;max-width:28ch;color:var(--soft)}
+.chapter .src{font-size:14px;color:var(--muted)}
+
+/* two paintings at their true relative size, hung on one line */
+.pair{padding-bottom:40px}
+.pair.small{--inch:13px}
+.pair .row{grid-column:2 / 13;display:flex;align-items:flex-start;gap:72px}
+.pair figure{display:flex;flex-direction:column;gap:16px}
+.pair .pic img{height:calc(var(--h) * var(--inch));width:auto}
+.pair .row{align-items:flex-end}
+
+/* all works, on white */
+.all{background:var(--white) url(../img/grain-white.png) repeat;background-size:320px 320px;border-top:1px solid var(--hair-soft);margin-top:144px;padding:104px var(--m) 128px}
+.all-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:72px}
+.all-head h2{font-weight:300;font-size:34px;line-height:1}
+.all-head span{font-size:14px;color:var(--muted)}
+.group + .group{margin-top:112px}
+.group-head{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid var(--hair);margin-bottom:56px;font-size:14px}
+.group-head h3{font-weight:400;font-size:14px}
+.group-head span{color:var(--muted)}
+.cells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap);row-gap:72px}
+.cell{display:flex;flex-direction:column;gap:18px}
+.cell .frame{height:var(--fh);display:flex;align-items:flex-end;container-type:inline-size}
+.cell img{height:min(calc(var(--fh) * var(--s)),calc(100cqw / var(--r)));width:auto}
+
+/* about and cv */
+.about{padding-top:128px;padding-bottom:112px;row-gap:64px}
+.about .col{grid-column:2 / 7;display:flex;flex-direction:column;gap:28px}
+.about .cv{grid-column:8 / 13}
+.label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.about .bio{font-size:21px;line-height:1.5;font-weight:300;max-width:32ch}
+.about .stmt{font-size:16px;line-height:1.65;color:var(--soft);max-width:44ch}
+.contact{display:flex;flex-direction:column;gap:8px;font-size:15px;padding-top:8px}
+.contact .email{user-select:all;align-self:flex-start}
+.contact a{color:var(--muted);align-self:flex-start}
+.contact a:hover{color:var(--ink)}
+.cv{display:flex;flex-direction:column;gap:40px;font-size:15px;line-height:1.45}
+.cv .label{margin-bottom:14px;display:block}
+.cv ul{list-style:none;margin:0;padding:0}
+.cv li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:10px 0;border-top:1px solid var(--hair-soft)}
+.cv li:last-child{border-bottom:1px solid var(--hair-soft)}
+.cv li .y{color:var(--muted)}
+
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin:0 var(--m);padding:22px 0 44px;border-top:1px solid var(--hair-soft);font-size:13.5px;color:var(--muted)}
+.foot a:hover{color:var(--ink)}
+
+/* one painting, with its words */
+.view{padding-top:40px;padding-bottom:72px;align-items:start;row-gap:48px}
+.view .pic{grid-column:1 / 8;display:flex;justify-content:center}
+.view .pic img{max-height:calc(100vh - 170px);max-height:calc(100svh - 170px);width:auto;max-width:100%}
+.view article{grid-column:9 / 13;display:flex;flex-direction:column;gap:28px;padding-top:4px}
+.view h1{font-weight:300;font-style:italic;font-size:28px;line-height:1.2}
+.view .cap{gap:4px;font-size:14px}
+.view .cap .z{font-size:13px;margin:4px 0 6px}
+.view .zhp{font-size:15px;line-height:2.05;text-align:justify;color:var(--soft)}
+.view .enp,.view .note{font-size:16px;line-height:1.7}
+.detail{width:100%;height:240px;background-repeat:no-repeat;background-size:auto;box-shadow:0 0 0 1px rgba(35,34,31,.08)}
+.view figure{display:flex;flex-direction:column;gap:10px}
+.view .lab{font-size:13px;color:var(--muted)}
+.credit{font-size:13px;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin:0 var(--m);padding:20px 0 24px;border-top:1px solid var(--hair);font-size:15px}
+.pn a{display:inline-flex;align-items:baseline;gap:12px;min-height:44px;align-items:center}
+.pn a span{color:var(--muted);font-size:14px}
+.pn a:hover i{color:var(--soft)}
+
+/* writing */
+.intro{padding-top:64px;padding-bottom:40px}
+.intro > div{grid-column:2 / 9;display:flex;flex-direction:column;gap:22px}
+.intro h1{font-weight:300;font-size:44px;line-height:1.05}
+.intro p{font-size:18px;line-height:1.55;color:var(--soft);max-width:46ch}
+.frags{padding-top:24px;padding-bottom:40px}
+.frag{grid-column:2 / 13;display:grid;grid-template-columns:140px minmax(0,1fr);column-gap:56px;padding:56px 0;border-top:1px solid var(--hair-soft)}
+.frag .txt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px;row-gap:18px}
+.frag h2{grid-column:1 / -1;font-weight:400;font-style:italic;font-size:19px}
+.frag .zhp{font-size:15px;line-height:2.05;text-align:justify;color:var(--soft)}
+.frag .enp{font-size:16px;line-height:1.7}
+.aside{padding-top:8px;padding-bottom:48px}
+.aside > div{grid-column:2 / 13;display:grid;grid-template-columns:140px minmax(0,1fr);column-gap:56px;padding-top:40px;border-top:1px solid var(--hair-soft)}
+.aside p{grid-column:2;font-size:16px;line-height:1.7;max-width:60ch;color:var(--soft)}
+.notes-head{padding-top:72px;padding-bottom:8px}
+.notes-head > div{grid-column:2 / 9;display:flex;flex-direction:column;gap:18px}
+.notes-head h2{font-weight:300;font-size:34px;line-height:1.05}
+.notes-head p{font-size:16px;line-height:1.6;color:var(--soft);max-width:46ch}
+.note-row{grid-column:2 / 13;display:grid;grid-template-columns:140px minmax(0,1fr);column-gap:56px;padding:44px 0;border-top:1px solid var(--hair-soft)}
+.note-row .txt{display:flex;flex-direction:column;gap:12px;max-width:68ch}
+.note-row h3{font-weight:400;font-style:italic;font-size:19px}
+.note-row .meta{font-size:13.5px;color:var(--muted)}
+.note-row p{font-size:16px;line-height:1.7}
+.coda{padding-top:56px;padding-bottom:96px}
+.coda > div{grid-column:2 / 10;display:flex;flex-direction:column;gap:10px;padding-top:40px;border-top:1px solid var(--hair-soft)}
+.coda p{font-size:20px;line-height:1.75}
+.coda p + p{font-size:18px;font-style:italic;color:var(--soft)}
+
+@media (prefers-reduced-motion:reduce){#ink,.pic img,.top .home{transition:none}html{scroll-behavior:auto}}
+
+@media (max-width:1100px){
+  :root{--m:40px;--gap:28px;--inch:20px;--fh:300px}
+  .hero{padding-top:104px}
+  .hero-l{grid-column:1 / 5}
+  .hero-cap{grid-column:5 / 7}
+  .hero-pic{grid-column:7 / 13}
+  .chapter > div{grid-column:1 / 9}
+  .pair .row{grid-column:1 / 13;gap:48px}
+  .about .col{grid-column:1 / 7}
+  .about .cv{grid-column:8 / 13}
+  .view .pic{grid-column:1 / 8}
+  .view article{grid-column:8 / 13}
+  .intro > div,.coda > div,.notes-head > div{grid-column:1 / 11}
+  .frag,.note-row,.aside > div{grid-column:1 / 13}
+}
+@media (max-width:760px){
+  :root{--m:20px;--gap:16px;--fh:200px}
+  .top{padding-top:18px;font-size:14px}
+  .nav{gap:22px}
+  .nav a,.top .home{min-height:40px;display:inline-flex;align-items:center}
+  .hero{padding-top:88px;padding-bottom:48px;row-gap:28px;align-content:start}
+  .hero-l,.hero-cap,.hero-pic{grid-column:1 / -1}
+  .hero-l{gap:18px;padding-bottom:12px}
+  .name{font-size:42px;gap:14px}
+  .hero-pic{justify-self:stretch}
+  .hero-pic img{height:auto;width:100%;max-height:none}
+  .hero-cap{order:3;text-align:left;align-items:flex-start;padding-bottom:0}
+  .chapter{padding-top:80px;padding-bottom:64px}
+  .hero + main .chapter:first-child{padding-top:80px}
+  .all{margin-top:80px}
+  .chapter > div{grid-column:1 / -1;gap:18px}
+  .chapter h2{font-size:32px}
+  .chapter .line{font-size:19px}
+  .pair{padding-bottom:96px}
+  .pair .row{flex-direction:column;align-items:flex-start;gap:48px}
+  .pair .pic img{height:auto;width:calc(var(--w) * 1%)}
+  .all{padding:64px var(--m) 80px}
+  .all-head{margin-bottom:40px}
+  .all-head h2{font-size:28px}
+  .group + .group{margin-top:72px}
+  .group-head{margin-bottom:32px}
+  .cells{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .cell{gap:12px}
+  .cap{font-size:12.5px}
+  .cap .t{font-size:14px}
+  .about{padding-top:72px;padding-bottom:64px;row-gap:48px}
+  .about .col,.about .cv{grid-column:1 / -1}
+  .about .bio{font-size:19px}
+  .view{padding-top:20px;padding-bottom:40px;row-gap:32px}
+  .view .pic,.view article{grid-column:1 / -1}
+  .view .pic img{max-height:none;width:100%}
+  .intro{padding-top:40px}
+  .intro > div,.coda > div,.frags > *{grid-column:1 / -1}
+  .intro h1{font-size:32px}
+  .frag,.note-row,.aside > div{grid-template-columns:1fr;row-gap:24px;padding:40px 0}
+  .frag .thumb,.note-row .thumb{max-width:110px}
+  .frag .txt{grid-template-columns:1fr}
+  .aside p{grid-column:1}
+  .notes-head h2{font-size:28px}
+  .coda{padding-bottom:64px}
+  .coda p{font-size:18px}
+}
